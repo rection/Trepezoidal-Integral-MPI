@@ -1,0 +1,22 @@
+image: python:latest
+
+before_script:
+  - uname -a
+  - python -V                                   # Print out python version for debugging
+
+test:
+  script:
+  - apt-get update && apt-get upgrade 
+  - apt-get install mpich gcc gfortran wget python-mpi4py python-numpy -y
+  - apt-get install 
+  - mkdir /nfs
+  - cd /nfs
+  - wget https://bitbucket.org/mpi4py/mpi4py/downloads/mpi4py-3.0.0.tar.gz
+  - tar -xvf mpi4py-3.0.0.tar.gz
+  - cd /nfs/mpi4py-3.0.0
+  - python setup.py build
+  - python setup.py build --mpicc=/where/you/have/mpicc
+  - python setup.py build --mpi=other_mpi
+  - python setup.py install
+  - cd /builds/rection/Trepezoidal-Integral-MPI
+  - mpiexec -n 4 --allow-run-as-root python2.7 Trepezoidal.py
