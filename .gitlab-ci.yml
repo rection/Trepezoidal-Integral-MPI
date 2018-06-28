@@ -19,4 +19,4 @@ test:
   - python setup.py build --mpi=other_mpi
   - python setup.py install
   - cd /builds/rection/Trepezoidal-Integral-MPI
-  - mpiexec -n 4 --allow-run-as-root python2.7 Trepezoidal.py
+  - mpiexec -n 4 --allow-run-as-root python2.7 Trepezoidal.py 0.0 1.0 10000
